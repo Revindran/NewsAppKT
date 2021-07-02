@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:id="@+id/newsNavHostFragment"
             app:defaultNavHost="true"
-            app:navGraph="@navigations/news_nav_graph"/>
+            app:navGraph="@navigations/news_nav_graphs"/>
 
     </FrameLayout>
 
