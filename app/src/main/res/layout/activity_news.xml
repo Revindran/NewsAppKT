@@ -17,6 +17,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/newsNavHostFragment"
+            app:defaultNavHost="true"
+            app:navGraph="@navigations/news_nav_graph"/>
 
     </FrameLayout>
 
