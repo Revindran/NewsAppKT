@@ -18,14 +18,12 @@ import kotlinx.android.synthetic.main.fragment_saved_news.*
 class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
 
     lateinit var viewModel: NewsViewModel
-
     lateinit var newsAdapter: NewsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
-
 
         newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
@@ -53,7 +51,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
                 val position = viewHolder.adapterPosition
                 val article = newsAdapter.differ.currentList[position]
                 viewModel.deleteArticle(article)
-                Snackbar.make(view, "Item Successfully Deleted", Snackbar.LENGTH_LONG).apply {
+                Snackbar.make(view, "Successfully deleted article", Snackbar.LENGTH_LONG).apply {
                     setAction("Undo") {
                         viewModel.saveArticle(article)
                     }
@@ -66,10 +64,9 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
             attachToRecyclerView(rvSavedNews)
         }
 
-        viewModel.getSavedNews().observe(viewLifecycleOwner, Observer { articleList ->
-            newsAdapter.differ.submitList(articleList)
+        viewModel.getSavedNews().observe(viewLifecycleOwner, Observer { articles ->
+            newsAdapter.differ.submitList(articles)
         })
-
     }
 
     private fun setupRecyclerView() {
@@ -79,5 +76,4 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
             layoutManager = LinearLayoutManager(activity)
         }
     }
-
 }

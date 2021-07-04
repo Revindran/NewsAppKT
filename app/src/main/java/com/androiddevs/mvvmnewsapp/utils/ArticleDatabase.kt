@@ -5,12 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.androiddevs.mvvmnewsapp.models.Article
 import com.androiddevs.mvvmnewsapp.db.ArticleDao
+import com.androiddevs.mvvmnewsapp.models.Article
 
 @Database(
     entities = [Article::class],
-    version = 1
+    version = 2
 )
 @TypeConverters(Converters::class)
 abstract class ArticleDatabase : RoomDatabase() {
@@ -31,7 +31,10 @@ abstract class ArticleDatabase : RoomDatabase() {
                 context.applicationContext,
                 ArticleDatabase::class.java,
                 "article_db.db"
-            ).build()
+            )
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build()
 
     }
 

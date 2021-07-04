@@ -5,7 +5,7 @@ import com.androiddevs.mvvmnewsapp.models.Article
 import com.androiddevs.mvvmnewsapp.utils.ArticleDatabase
 
 class NewsRepository(
-    val db: ArticleDatabase
+    private val db: ArticleDatabase
 ) {
     suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
         RetrofitInstance.api.getBreakingNews(countryCode, pageNumber)
