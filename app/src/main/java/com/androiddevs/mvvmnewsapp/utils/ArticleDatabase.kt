@@ -26,16 +26,14 @@ abstract class ArticleDatabase : RoomDatabase() {
             instance ?: createDatabase(context).also { instance = it }
         }
 
-        private fun createDatabase(context: Context) =
-            Room.databaseBuilder(
-                context.applicationContext,
-                ArticleDatabase::class.java,
-                "article_db.db"
-            )
-                .fallbackToDestructiveMigration()
-                .allowMainThreadQueries()
-                .build()
-
+        private fun createDatabase(context: Context) = Room.databaseBuilder(
+            context.applicationContext,
+            ArticleDatabase::class.java,
+            "article_db.db"
+        )
+            .fallbackToDestructiveMigration()
+            .allowMainThreadQueries()
+            .build()
     }
 
 }
